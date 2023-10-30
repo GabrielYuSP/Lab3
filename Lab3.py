@@ -5,38 +5,48 @@ SORT_DESCENDING = 1
 
 
 def bubble_sort(arr, sorting_order):
-
     # Copy input list to results list
     arr_result = arr.copy()
 
     # Get number of elements in the list
     n = len(arr_result)
 
-    if n < 10:
-        # Traverse through all array elements
-        for i in range(n - 1):
-            # range(n) also work but outer loop will
-            # repeat one time more than needed.
+    if all(isinstance(x, int) for x in arr):
+        # check if all integer
 
-            # Last i elements are already in place
-            for j in range(0, n - i - 1):
+        if n < 10:
+            if n == 0:
+                # check if array has 0 elements
+                # Return an empty array
+                arr_result = 0
+            else:
+            # check if less than 10 elements
+            # Traverse through all array elements
+                for i in range(n - 1):
+                    # range(n) also work but outer loop will
+                    # repeat one time more than needed.
 
-                if sorting_order == SORT_ASCENDING:
-                    if arr_result[j] > arr_result[j + 1]:
-                        arr_result[j], arr_result[j + 1] = arr_result[j + 1], arr_result[j]
+                # Last i elements are already in place
+                    for j in range(0, n - i - 1):
+
+                        if sorting_order == SORT_ASCENDING:
+                            if arr_result[j] > arr_result[j + 1]:
+                                arr_result[j], arr_result[j + 1] = arr_result[j + 1], arr_result[j]
 
 
-                elif sorting_order == SORT_DESCENDING:
-                    if arr_result[j] < arr_result[j + 1]:
-                        arr_result[j], arr_result[j + 1] = arr_result[j + 1], arr_result[j]
+                        elif sorting_order == SORT_DESCENDING:
+                            if arr_result[j] < arr_result[j + 1]:
+                                arr_result[j], arr_result[j + 1] = arr_result[j + 1], arr_result[j]
 
-                else:
-                    # Return an empty array
-                    arr_result = []
+        else:
+            # if array has more than 10 elements
+            arr_result = 1
     else:
-        arr_result = -1
+        # if not integer
+        arr_result = 2
 
     return arr_result
+
 
 def main():
     # Driver code to test above
@@ -52,7 +62,6 @@ def main():
     result = bubble_sort(arr, SORT_DESCENDING)
     print(result)
 
+
 if __name__ == "__main__":
     main()
-
-
