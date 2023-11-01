@@ -22,16 +22,19 @@ def calculate_average_salary():
     total = 0
     average = 0
 
-    #add your implementation to calculate here
+    for item in employee_data:
+        total += int(item["salary"])
 
-
+    average = total/len(employee_data)
     return average
 
 def get_employees_by_dept(department):
     result = []
 
     # Add your implementation from here
-
+    for item in employee_data:
+        if item["department"] == department:
+            result.append(item)
 
     return result
 
@@ -66,12 +69,13 @@ def display_main_menu():
         display_all_records()
 
     elif option == '2':
-        average_salary = calculate_average_salary()
+        #round salary to 2 decimal places
+        average_salary = round(calculate_average_salary())
         print("Average salary = " + str(average_salary))
 
     elif option == '3':
         age_lower_limit = input("age (Lower Limit) = ")
-        age_upper_limit = input("age (Uper Limit) = ")
+        age_upper_limit = input("age (Upper Limit) = ")
         employee_info = get_employees_by_age_range(age_lower_limit, age_upper_limit)
         display_records(employee_info)
 
